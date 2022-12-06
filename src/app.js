@@ -2,12 +2,14 @@ import express from 'express'
 import hbs from 'hbs'
 import path from 'path'
 import * as url from 'url';
+
 import geocode from './utils/geocode.js';
 import forecast from './utils/forecast.js';
 
 const publicDirectory = path.join(url.fileURLToPath(new URL('.', import.meta.url)), '../public');
 
 const app = express()
+const port = process.env.PORT || 3000
 
 const viewsPath = path.join(url.fileURLToPath(new URL('.', import.meta.url)), '../views')
 const partialsPath = path.join(url.fileURLToPath(new URL('.', import.meta.url)), '../views/partials')
@@ -73,6 +75,4 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Listening port 3000....')
-})
+app.listen(port, () => console.log('Listening port 3000....'))
